@@ -12,38 +12,45 @@ import AvocatDashboard from "./routes/AvocatDashboard";
 import AvocatEditProfile from "./routes/AvocatEditProfile";
 import AdminLogin from "./routes/AdminLogin";
 import AdminDashboard from "./routes/AdminDashboard";
+import Root from "./routes/Root";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />, // ranim
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <Home />, // ranim
+      },
+      {
+        path: "/search",
+        element: <Search />, // ranim
+      },
+      {
+        path: "/avocat-profile/:avocatId",
+        element: <AvocatProfile />, // ranim
+      },
+      {
+        path: "/user-dashboard",
+        element: <UserDashboard />, // ranim
+      },
+      {
+        path: "/avocat-register",
+        element: <AvocatRegister />, // abdou
+      },
+      {
+        path: "/login",
+        element: <Login />, // abdou
+      },
+    ],
   },
-  {
-    path: "/search",
-    element: <Search />, // ranim 
-  },
-  {
-    path: "/avocat-profile/:avocatId",
-    element: <AvocatProfile />, // ranim
-  },
-  {
-    path: "/user-dashboard",
-    element: <UserDashboard />, // ranim 
-  },
-  {
-    path: "/avocat-register",
-    element: <AvocatRegister />, // abdou
-  },
-  {
-    path: "/login",
-    element: <Login />, // abdou 
-  },
+
   {
     path: "/avocat-dashboard/:avocatId",
     children: [
       {
         path: "home",
-        element: <AvocatDashboard />, // abdou 
+        element: <AvocatDashboard />, // abdou
       },
       {
         path: "edit-profile",
@@ -53,7 +60,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin-login",
-    element: <AdminLogin />, // abdou 
+    element: <AdminLogin />, // abdou
   },
   {
     path: "/admin-dashboard",
