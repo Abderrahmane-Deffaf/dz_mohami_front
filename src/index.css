@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 @layer base  {
   body {
     @apply bg-primary relative  ; 
