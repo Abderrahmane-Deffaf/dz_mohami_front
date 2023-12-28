@@ -11,4 +11,7 @@
   h1 {
     @apply text-5xl font-bold text-black
   }
+  h3 {
+    @apply text-xl font-bold text-black
+  }
 }

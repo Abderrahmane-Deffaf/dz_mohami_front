@@ -7,13 +7,13 @@ import { User } from "lucide-react";
 const NavBar = () => {
   return (
     <div className=" bg-white ">
-      <div className=" max-w-[1170px] py-7 flex items-center justify-between mx-auto">
+      <div className=" max-w-[1170px] py-4 overflow-hidden flex items-center justify-between mx-auto">
         <Link to="/">
           <img src={logo_text} alt="logo dz mohami" />
         </Link>
         <div className="flex gap-6 ">
           <Link
-            className=" text-midBlue relative font-bold after:block after:content-[''] after:h-[400%] after:-top-[150%] after:w-[1px] after:bg-gray after:-right-3 after:absolute"
+            className=" text-midBlue relative font-bold after:block after:content-[''] after:h-[300%] after:-top-[100%] after:w-[1px] after:bg-gray after:-right-3 after:absolute"
             to="/avocat-register"
           >
             Développez votre cabinet

@@ -6,6 +6,10 @@ import { User, Mail, KeyRound, Phone, Facebook } from "lucide-react";
 
 import InputField from "./reusable/InputField";
 import ImageInput from "./reusable/ImageInput";
+import CategoriesCheckbox from "./reusable/CategoriesCheckbox";
+import CostumTextarea from "./reusable/CostumTextarea";
+import DaysOfWork from "./reusable/DaysOfWork";
+import HoursOfWork from "./reusable/HoursOfWork";
 
 const RegisterAvocatForm = () => {
   const form = useForm({
@@ -18,7 +22,6 @@ const RegisterAvocatForm = () => {
       phone: "",
       facebook: "",
       description: "",
-      categories: [],
     },
   });
 
@@ -72,9 +75,13 @@ const RegisterAvocatForm = () => {
             <FormField
               control={form.control}
               name="email"
-              type="mail"
               render={({ field }) => (
-                <InputField placeholder="Email" field={field} icon={<Mail />} />
+                <InputField
+                  type="mail"
+                  placeholder="Email"
+                  field={field}
+                  icon={<Mail />}
+                />
               )}
             />
             <FormField
@@ -115,7 +122,18 @@ const RegisterAvocatForm = () => {
             />
           </div>
 
-          <div className=" flex flex-col px-8 gap-8 basis-[49%]"></div>
+          <div className=" flex flex-col px-8 gap-8 basis-[49%]">
+            <CategoriesCheckbox form={form} />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <CostumTextarea placeholder="Descriptions"  field={field}/>
+              )}
+            />
+            <DaysOfWork form={form} />
+            <HoursOfWork form={form} />
+          </div>
         </div>
 
         <Button type="submit">Submit</Button>
