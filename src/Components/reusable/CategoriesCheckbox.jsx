@@ -53,7 +53,7 @@ const CategoriesCheckbox = ({ form }) => {
             Choisir les catégories
             <ChevronDown />
         </PopoverTrigger>
-        <PopoverContent className="max-h-[10rem] flex min-w-[32rem] flex-col gap-3 ">
+        <PopoverContent className="max-h-[10rem] flex min-w-[25rem] flex-col gap-3 ">
           {categories.map((Element, index) => (
             <FormField
               key={index}

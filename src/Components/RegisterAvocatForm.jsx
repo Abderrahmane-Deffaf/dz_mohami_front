@@ -10,6 +10,7 @@ import CategoriesCheckbox from "./reusable/CategoriesCheckbox";
 import CostumTextarea from "./reusable/CostumTextarea";
 import DaysOfWork from "./reusable/DaysOfWork";
 import HoursOfWork from "./reusable/HoursOfWork";
+import Location from "./reusable/Location";
 
 const RegisterAvocatForm = () => {
   const form = useForm({
@@ -32,11 +33,11 @@ const RegisterAvocatForm = () => {
   return (
     <Form {...form}>
       <form
-        className="flex py-6 flex-col gap-4"
+        className="flex items-center py-6 flex-col gap-9"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className="flex justify-between">
-          <div className=" flex flex-col px-8 gap-8 after:block after:content-[''] after:absolute after:right-0 after:h-full after:w-[1px] after:bg-gray relative basis-[49%]">
+          <div className=" flex flex-col px-8 gap-8 after:block  after:content-[''] after:absolute after:-right-3 after:h-full after:w-[1px] after:bg-gray relative basis-[49%]">
             <div className="flex justify-between ">
               <div className="flex basis-[65%] flex-col justify-between">
                 <FormField
@@ -120,15 +121,16 @@ const RegisterAvocatForm = () => {
                 />
               )}
             />
+            <CategoriesCheckbox form={form} />
           </div>
 
           <div className=" flex flex-col px-8 gap-8 basis-[49%]">
-            <CategoriesCheckbox form={form} />
+            <Location />
             <FormField
               control={form.control}
               name="description"
               render={({ field }) => (
-                <CostumTextarea placeholder="Descriptions"  field={field}/>
+                <CostumTextarea placeholder="Descriptions" field={field} />
               )}
             />
             <DaysOfWork form={form} />
@@ -136,7 +138,9 @@ const RegisterAvocatForm = () => {
           </div>
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button className="px-[7rem]" type="submit">
+          S&apos;inscrire
+        </Button>
       </form>
     </Form>
   );
