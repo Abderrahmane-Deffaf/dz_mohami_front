@@ -138,7 +138,7 @@ const RegisterAvocatForm = () => {
           </div>
         </div>
 
-        <Button className="px-[7rem]" type="submit">
+        <Button className="px-[7rem] " type="submit">
           S&apos;inscrire
         </Button>
       </form>
