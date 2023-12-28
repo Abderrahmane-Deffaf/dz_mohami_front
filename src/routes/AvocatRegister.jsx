@@ -1,14 +1,12 @@
 // eslint-disable-next-line import/no-unresolved
-import { Button } from "@/components/ui/button";
-
+import RegisterAvocatForm from "@/components/RegisterAvocatForm";
 
 const AvocatRegister = () => {
   return (
-    <div className=" h-screen">
-      <div className="max-w-[1170px] py-8 mx-auto">
+    <div className=" h-screen bg-darkGray">
+      <div className="max-w-[1170px] flex flex-col gap-8 py-8 mx-auto">
         <h1 className=" text-center">Registre Form </h1>
-
-        <Button type="submit">Submit</Button>
+        <RegisterAvocatForm />
       </div>
     </div>
   );
