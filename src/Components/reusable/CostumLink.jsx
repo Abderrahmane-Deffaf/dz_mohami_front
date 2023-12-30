@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-const CostumLink = ({text}) => {
+const CostumLink = ({text, dist}) => {
   return (
     <Link
       className=" text-white px-20 py-2 w-fit bg-orange font-semibold "
-      to="/search"
+      to={dist}
     >
       {text}
     </Link>

@@ -14,7 +14,7 @@ const Footer = () => {
           <p className=" max-w-[26ch] font-bold text-3xl ">
             Des avocats expérimentés sont prêts à aider.
           </p>
-          <CostumLink text={"Trouver un avocat"} />
+          <CostumLink dist={"/search"} text={"Trouver un avocat"} />
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 
 const AvocatDashboard = () => {
   return (
-    <div>AvocatDashboard</div>
+    <div className="  basis-[80%] h-[200vh]">
+      
+    </div>
   )
 }
 

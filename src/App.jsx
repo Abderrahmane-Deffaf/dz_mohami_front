@@ -13,6 +13,7 @@ import AvocatEditProfile from "./routes/AvocatEditProfile";
 import AdminLogin from "./routes/AdminLogin";
 import AdminDashboard from "./routes/AdminDashboard";
 import Root from "./routes/Root";
+import AvocatDashboardRoot from "./routes/AvocatDashboardRoot";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
 
   {
     path: "/avocat-dashboard/:avocatId",
+    element: <AvocatDashboardRoot/>, 
     children: [
       {
         path: "home",
