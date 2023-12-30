@@ -2,7 +2,7 @@
 const Home = () => {
   return (
     <div>
-      landing page 
+      git checkout -b ranim
     </div>
   )
 }
