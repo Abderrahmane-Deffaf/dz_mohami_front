@@ -14,6 +14,10 @@ import AdminLogin from "./routes/AdminLogin";
 import AdminDashboard from "./routes/AdminDashboard";
 import Root from "./routes/Root";
 import AvocatDashboardRoot from "./routes/AvocatDashboardRoot";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const qureyClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -48,7 +52,7 @@ const router = createBrowserRouter([
 
   {
     path: "/avocat-dashboard/:avocatId",
-    element: <AvocatDashboardRoot/>, 
+    element: <AvocatDashboardRoot />,
     children: [
       {
         path: "home",
@@ -75,6 +79,9 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={qureyClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

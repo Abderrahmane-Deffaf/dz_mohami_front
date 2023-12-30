@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import {  Mail, KeyRound } from "lucide-react";
 
 import InputField from "./reusable/InputField";
+import GoogleButton from "./reusable/GoogleButton";
 
 const LoginForm = () => {
   const form = useForm({
@@ -51,6 +52,7 @@ const LoginForm = () => {
         <Button className="w-full" type="submit">
           Se connecter
         </Button>
+        <GoogleButton />
       </form>
     </Form>
   );
