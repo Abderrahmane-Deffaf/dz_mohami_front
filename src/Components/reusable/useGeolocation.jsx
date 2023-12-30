@@ -18,8 +18,8 @@ const useGeolocation = () => {
 
     const handleError = (error) => {
       setLocation({
-        latitude: null,
-        longitude: null,
+        latitude: 28.0339,
+        longitude: 1.6596,
         error: error.message,
       });
     };
@@ -33,7 +33,6 @@ const useGeolocation = () => {
     navigator.geolocation.getCurrentPosition(
       handleSuccess,
       handleError,
-      options
     );
 
     // You can also watch for changes in position using:

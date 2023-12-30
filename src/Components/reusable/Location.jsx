@@ -5,19 +5,20 @@ import { api_key } from "@/lib/constants";
 
 const Location = () => {
   const { latitude, longitude, error } = useGeolocation();
+  console.log(latitude, longitude)
   return (
     <div>
       <APIProvider apiKey={api_key}>
         <div className=" w-full h-[10rem] rounded-lg overflow-hidden">
           <Map
-            zoom={3}
+            zoom={19}
             center={{ lat: latitude, lng: longitude }}
             gestureHandling={"greedy"}
             disableDefaultUI={true}
           />
-          <AdvancedMarker
+          {/* <AdvancedMarker
             position={{ lat: latitude, lng: longitude }}
-          ></AdvancedMarker>
+          ></AdvancedMarker> */}
         </div>
       </APIProvider>
     </div>
