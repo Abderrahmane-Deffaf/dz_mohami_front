@@ -1,8 +1,11 @@
-
+// eslint-disable-next-line import/no-unresolved
+import SearchAvocatName from "@/Components/SearchAvocatForm";
 const Search = () => {
   return (
-    <div>Search and filter for avocats</div>
+    <div>
+      <SearchAvocatName />
+    </div>
   )
 }
 
-export default Search
+export default Search;
