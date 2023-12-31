@@ -4,14 +4,21 @@
 
 
 
-@layer base  {
+@layer base {
   body {
-    @apply bg-primary relative  ; 
+    @apply bg-primary relative;
   }
+
   h1 {
     @apply text-5xl font-bold text-black
   }
+
   h3 {
-    @apply text-xl font-bold text-black
+    @apply text-xl font-bold text-black text-3xl
+  }
+
+  .text-custom-color {
+    --tw-text-opacity: 1;
+    color: #00447B;
   }
 }
