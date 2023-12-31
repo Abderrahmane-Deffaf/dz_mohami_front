@@ -13,6 +13,9 @@
     @apply text-5xl font-bold text-black
   }
 
+  h2 {
+    @apply text-4xl font-bold text-black
+  }
   h3 {
     @apply text-xl font-bold text-black text-3xl
   }

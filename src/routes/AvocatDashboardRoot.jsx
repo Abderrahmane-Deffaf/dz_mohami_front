@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const AvocatDashboardRoot = () => {
   return (
-    <div className="flex w-full ">
+    <div className="flex bg-lightGray w-full ">
       <SideBar/>
       <Outlet />
     </div>
