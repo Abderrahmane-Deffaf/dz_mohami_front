@@ -8,7 +8,7 @@ const Stars = ({ numberOfStarts=0 }) => {
   const arrayTwo = new Array(restStarsNumber).fill("value");
 
   return (
-    <div className="flex">
+    <div className="flex mr-3">
       {arrayOne.map((Element, index) => (
         <i className="filled" key={index}>
           <svg

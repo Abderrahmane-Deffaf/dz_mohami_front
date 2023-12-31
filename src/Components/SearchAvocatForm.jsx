@@ -3,7 +3,9 @@ import { Form, FormField } from "./ui/form";
 import CostumLink from "../Components/reusable/CostumLink";
 // eslint-disable-next-line import/no-unresolved
 import { User } from "lucide-react";
-import WilayaCheckbox from "../Components/reusable/WilayaCheckBox";
+import SelectFilter from "../Components/reusable/SelectFilte";
+
+
 
 import InputField from "./reusable/InputField";
 
@@ -41,8 +43,16 @@ const SearchAvocatName = () => {
                             )}
                         />
 
-                        <CategoriesCheckbox form={form} />
-                        <WilayaCheckbox form={form} />
+                        <div className="text-nowrap"><CategoriesCheckbox form={form} /></div>
+                    
+
+                    <FormField
+                        control={form.control}
+                        name="wilaya"
+                        render={({ field }) => (
+                            <SelectFilter field={field} type={"wilaya"} />
+                        )}
+                    />
                         
                     </div>
                 </div>

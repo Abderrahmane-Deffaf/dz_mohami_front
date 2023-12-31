@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { useQuery } from "@tanstack/react-query";
 // eslint-disable-next-line import/no-unresolved
 import { getAvocatBookings } from "@/Fetches/avocatDashboard";
