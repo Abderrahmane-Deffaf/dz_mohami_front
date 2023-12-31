@@ -60,7 +60,7 @@ export function DataTable({
       pagination,
     },
     pageCount: pageCount,
-    onPaginationChange: (fn) => {
+    onPaginationChange: () => {
       //setPagination(value);
 
       if (table.getCanNextPage()) {
@@ -74,11 +74,11 @@ export function DataTable({
   
   return (
     <div>
-      <div className="rounded-md bg-white border">
+      <div className="rounded-md bg-white shadow">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow className=" bg-midGray " key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>

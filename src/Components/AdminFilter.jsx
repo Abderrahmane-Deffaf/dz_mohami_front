@@ -75,7 +75,7 @@ const AdminFilter = () => {
           />
         </div>
 
-        <Button className="px-[1rem] bg-midBlue py-2 rounded-3xl " type="submit">
+        <Button className="px-[1rem] hover:bg-midBlue/90 bg-midBlue py-2 rounded-3xl " type="submit">
           Appliquer
         </Button>
       </form>

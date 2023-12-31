@@ -7,7 +7,6 @@ import { Button } from "../ui/button";
 const SideBar = () => {
   const { pathname } = useLocation();
   const path = pathname.split("/")[pathname.split("/").length - 1];
-  console.log(path);
 
   return (
     <div className="text-white px-4 py-16 flex flex-col justify-between items-center bg-blue basis-[20%] sticky top-0  h-screen ">
@@ -29,7 +28,7 @@ const SideBar = () => {
           to={"edit-profile"}
         >
           <User />
-          Modifier el pro file
+          Modifier el profile
         </Link>
       </div>
       <Button className="px-2 hover:bg-midBlue rounded-none justify-start w-full py-1" variant="link">

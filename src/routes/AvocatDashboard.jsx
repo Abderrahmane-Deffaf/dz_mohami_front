@@ -9,10 +9,12 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-// eslint-disable-next-line import/no-unresolved
+  // eslint-disable-next-line import/no-unresolved
 } from "@/components/ui/dropdown-menu";
 // eslint-disable-next-line import/no-unresolved
 import { Button } from "@/components/ui/button";
+import moment from "moment";
+import "moment/locale/fr";
 
 const AvocatDashboard = () => {
   const { data, isLoading } = useQuery({
@@ -21,8 +23,9 @@ const AvocatDashboard = () => {
       return getAvocatBookings();
     },
   });
-  console.log(data);
-
+  console.log(isLoading);
+  
+  moment.locale("fr");
 
   return (
     <div className="basis-[80%] space-y-[5rem] p-8 ">
@@ -38,7 +41,9 @@ const AvocatDashboard = () => {
             >
               <div className="flex flex-col gap-2">
                 <div className="flex gap-2">
-                  <span className="font-semibold ">{Element.user_name}</span>
+                  <span className="font-semibold ">
+                    {Element.userName} {Element.userPrenom}
+                  </span>
                   <span>{Element.date}</span>
                 </div>
                 <div>
@@ -48,15 +53,17 @@ const AvocatDashboard = () => {
                 <div className="flex gap-2">
                   <div className="flex flex-col ">
                     <span className=" font-semibold">Téléphone</span>
-                    <a href={`tel:${Element.phone_number}`}>
-                      {Element.phone_number}
+                    <a href={`tel:${Element.phoneNumber}`}>
+                      {Element.phoneNumber}
                     </a>
                   </div>
                   <div className="flex flex-col ">
                     <span className=" font-semibold">Date</span>
                     <div className="flex gap-2">
-                      <span>{Element.date_of_booking}</span>
-                      <span>{Element.hour_of_booking}</span>
+                      <span>{moment(Element.date).format("dddd")}</span>
+                      <span>
+                        {Element.end} {Element.start}
+                      </span>
                     </div>
                   </div>
                 </div>

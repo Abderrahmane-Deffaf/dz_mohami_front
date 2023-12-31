@@ -16,12 +16,14 @@ import Root from "./routes/Root";
 import AvocatDashboardRoot from "./routes/AvocatDashboardRoot";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import NotFound from "./components/reusable/NotFound";
 
 const qureyClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     element: <Root />,
+    errorElement:<NotFound/>, 
     children: [
       {
         path: "/",

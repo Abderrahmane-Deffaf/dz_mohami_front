@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   return (
     <div className="flex  bg-lightGray w-full ">
       <AdminSideBar />
-      <div className="flex basis-[80%] flex-col gap-6 p-6">
+      <div className="flex basis-[80%] flex-col gap-[5rem] p-6">
         <AdminFilter />
         {isLoading ? (
           <Loader />
@@ -36,6 +36,7 @@ const AdminDashboard = () => {
             pageCount={1}
             pageSize={5}
             setPage={null}
+            pageIndex={0}
           />
         )}
       </div>
