@@ -1,17 +1,16 @@
 import { MapPin, Phone } from "lucide-react";
-import avocat1 from "../assets/avocat1.png";
 import Stars from "../Components/reusable/Stars";
 import CostumLink from "../Components/reusable/CostumLink";
 import CastumButton from "./reusable/CastumButton";
 
 
-const SearchCard = ({ name, location, categories, numberOfStarts }) => {
+const SearchCard = ({ name, image,location, categories, numberOfStarts }) => {
     return (
 
         <div className="card px-6 py-4">
             <div className="bg-white p-6 rounded-lg shadow-lg w-full max-h-sm mx-auto ">
                 <div className="flex">
-                    <img className="h-150 w-112  object-cover rounded-lg mr-3" src={avocat1} alt={avocat1} />
+                    <img className="h-150 w-112  object-cover rounded-lg mr-3" src={image} alt="avocat-profile" />
                     <div className="information">
                         <h1 className="text-base font-bold mb-0">{name}</h1>
                         <p className="flex items-center text-yellow-400 font-bold">
