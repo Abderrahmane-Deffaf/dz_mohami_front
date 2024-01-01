@@ -3,12 +3,12 @@ const Stars = ({ numberOfStarts=0 }) => {
   const starsNumber = Number(numberOfStarts);
   const intNumber = Math.floor(starsNumber);
   const restPartNumber = starsNumber - intNumber;
-  const restStarsNumber = 5 - intNumber;
+  const restStarsNumber = 5 - (intNumber+Math.ceil(restPartNumber));
   const arrayOne = new Array(intNumber).fill("value");
   const arrayTwo = new Array(restStarsNumber).fill("value");
 
   return (
-    <div className="flex">
+    <div className="flex mr-2">
       {arrayOne.map((Element, index) => (
         <i className="filled" key={index}>
           <svg
