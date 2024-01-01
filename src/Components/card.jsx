@@ -1,8 +1,9 @@
-import { MapPin, Star } from "lucide-react";
+import { MapPin } from "lucide-react";
 import avocat1 from "../assets/avocat1.png";
+import Stars from "../Components/reusable/Stars";
 
 
-const card = ({ name, location, categories }) => {
+const card = ({ name, location, categories, numberOfStarts }) => {
     return (
 
         <div className="card">
@@ -11,12 +12,8 @@ const card = ({ name, location, categories }) => {
                     <img className="h-150 w-112  object-cover rounded-lg mr-3" src={avocat1} alt={avocat1} />
                     <div className="information">
                         <h1 className="text-base font-bold mb-0">{name}</h1>
-                        <h2 className="text-yellow-400 font-bold mb-12 flex">
-                            {<Star />}
-                            {<Star />}
-                            {<Star />}
-                            {<Star />}
-                            {<Star />} 4.5</h2>
+                        <p className="flex items-center text-yellow-400 font-bold mb-12">
+                            <Stars numberOfStarts={numberOfStarts}/>{numberOfStarts}</p>
                         <div className="flex">
                             {<MapPin size={16} />}
                             <p className="text-gray-500 text-xs mb-8 flex"> {location}</p>
