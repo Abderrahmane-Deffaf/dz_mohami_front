@@ -1,33 +1,90 @@
-import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import useGeolocation from "./useGeolocation";
-// eslint-disable-next-line import/no-unresolved
 import { api_key } from "@/lib/constants";
-import { useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
+import ReactMapGl, {
+  GeolocateControl,
+  Marker,
+  NavigationControl,
+} from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import GeoCoder from "./GeoCoder";
+import {
+  setKey,
+  setDefaults,
+  setLanguage,
+  setRegion,
+  fromAddress,
+  fromLatLng,
+  fromPlaceId,
+  setLocationType,
+  geocode,
+  RequestType,
+} from "react-geocode";
 
-const Location = ({form}) => {
+setKey("AIzaSyCeakuq90M--d11LTVwdqCTo2wQtVstYsM");
+
+export const locationContext = createContext();
+
+const Location = ({ form }) => {
   const { latitude, longitude, error } = useGeolocation();
-  console.log(latitude, longitude)
-  useEffect(()=> {
-    form.setValue("long", longitude);
-    form.setValue("lat", latitude);
-  }, [longitude, latitude])
-  
+  const [long, setLong] = useState(0);
+  const [lat, setLat] = useState(0);
+
+  console.log(latitude, longitude);
+  // setting it initialy
+  useEffect(() => {
+    setLong(longitude);
+    setLat(latitude);
+  }, [longitude, latitude]);
+
+  // further setting
+  useEffect(() => {
+    console.log(long, lat);
+    form.setValue("long", long);
+    form.setValue("lat", lat);
+    fromLatLng(lat, long)
+      .then(({ results }) => {
+        console.log(results);
+
+        const { lat, lng } = results[0].geometry.location;
+        console.log(lat, lng);
+      })
+      .catch(console.error);
+  }, [lat, long]);
+
   return (
-    <div>
-      <APIProvider apiKey={api_key}>
-        <div className=" w-full h-[10rem] rounded-lg overflow-hidden">
-          <Map
-            zoom={19}
-            center={{ lat: latitude, lng: longitude }}
-            gestureHandling={"greedy"}
-            disableDefaultUI={true}
+    <locationContext.Provider value={{ setLat, setLong, long, lat }}>
+      <div className="w-[100%] h-60">
+        <ReactMapGl
+          initialViewState={{ latitude: lat, longitude: long }}
+          mapboxAccessToken={api_key}
+          mapStyle="mapbox://styles/mapbox/streets-v11"
+        >
+          <Marker
+            latitude={lat}
+            longitude={long}
+            draggable
+            onDragEnd={(e) => {
+              console.log(e);
+              setLat(e.lngLat.lat);
+              setLong(e.lngLat.lng);
+            }}
           />
-          {/* <AdvancedMarker
-            position={{ lat: latitude, lng: longitude }}
-          ></AdvancedMarker> */}
-        </div>
-      </APIProvider>
-    </div>
+          <NavigationControl position="bottom-right" />
+          <GeolocateControl
+            position="top-left"
+            trackUserLocation
+            onGeolocate={(e) => {
+              console.log(e.coords.latitude, e.coords.longitude);
+              setLat(e.coords.latitude);
+              setLong(e.coords.longitude);
+            }}
+          />
+          <GeoCoder />
+        </ReactMapGl>
+      </div>
+    </locationContext.Provider>
   );
 };
 
