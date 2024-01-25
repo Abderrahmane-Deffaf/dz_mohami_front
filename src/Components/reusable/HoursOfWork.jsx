@@ -4,7 +4,7 @@ import { Checkbox } from "../ui/checkbox";
 
 const HoursOfWork = ({ form }) => {
   const HoursOfWorkList = [
-    "11:00 PM - 12:30",
+    "08:00 PM - 12:30",
     "12:00 PM - 12:30",
   ];
 

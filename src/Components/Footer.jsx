@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo_white_big from "./../assets/logo_white_big.svg";
 import CostumLink from "./reusable/CostumLink";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const {t} = useTranslation() ; 
   return (
     <div className=" bg-gray  w-full ">
       <div className="text-white max-w-[1170px] py-7 flex items-center justify-between mx-auto">
@@ -12,9 +14,9 @@ const Footer = () => {
         </Link>
         <div className="flex flex-col gap-6 ">
           <p className=" max-w-[26ch] font-bold text-3xl ">
-            Des avocats expérimentés sont prêts à aider.
+            {t("home.footer")}
           </p>
-          <CostumLink dist={"/search"} text={"Trouver un avocat"} />
+          <CostumLink dist={"/search"} text={t("home.action")} />
         </div>
       </div>
     </div>

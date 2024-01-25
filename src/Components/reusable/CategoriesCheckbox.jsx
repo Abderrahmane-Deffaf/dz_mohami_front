@@ -51,7 +51,6 @@ const CategoriesCheckbox = ({ form }) => {
         <PopoverTrigger className="w-full  flex justify-between bg-white rounded-lg  p-4">
             <Scale />
             <div className="whitespace-nowrap"> Choisir les catégories</div>
-           
             <ChevronDown />
         </PopoverTrigger>
         <PopoverContent className="max-h-[10rem] flex min-w-[25rem] flex-col gap-3 ">

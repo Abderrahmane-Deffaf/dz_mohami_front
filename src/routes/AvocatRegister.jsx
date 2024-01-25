@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import RegisterAvocatForm from "@/components/RegisterAvocatForm";
 
 const AvocatRegister = () => {

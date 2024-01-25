@@ -23,13 +23,17 @@ const RegisterAvocatForm = () => {
       phone: "",
       facebook: "",
       description: "",
+      long: 0, 
+      lat: 0, 
+      wilaya: "", 
+      address: "", 
     },
   });
 
   const onSubmit = (values) => {
     console.log(values);
   };
-
+  
   return (
     <Form {...form}>
       <form
@@ -125,7 +129,7 @@ const RegisterAvocatForm = () => {
           </div>
 
           <div className=" flex flex-col px-8 gap-8 basis-[49%]">
-            <Location />
+            <Location form={form} />
             <FormField
               control={form.control}
               name="description"

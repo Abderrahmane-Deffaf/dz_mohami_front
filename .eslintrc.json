@@ -3,6 +3,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:import/errors",
+    "plugin:import/warrnings", 
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
@@ -31,8 +32,7 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
-      }
+        "extensions": [".js", ".jsx","ts", "tsx"]      }
     }
   }
 }
