@@ -5,7 +5,6 @@ import { Input } from "../ui/input";
 import avatar from "@/assets/icons/avatar.png";
 
 const ImageInput = ({ field }) => {
-
   const [preview, setPreview] = useState(avatar);
   // create a preview from the initial image
   useEffect(() => {
@@ -19,11 +18,11 @@ const ImageInput = ({ field }) => {
         htmlFor={field?.name}
         className="relative overflow-hidden  flex h-[8rem]  w-[8rem]   cursor-pointer  items-center justify-center rounded-lg   "
       >
-          <img
-            className="h-full w-full object-cover  "
-            src={preview}
-            alt="preview"
-          />
+        <img
+          className="h-full w-full object-cover  "
+          src={preview}
+          alt="preview"
+        />
       </FormLabel>
       <FormControl>
         <Input
@@ -33,7 +32,7 @@ const ImageInput = ({ field }) => {
             if (file) {
               const reader = new FileReader();
               reader.onloadend = () => {
-                setPreview(reader?.result );
+                setPreview(reader?.result);
               };
               reader.readAsDataURL(file);
             } else {

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 const useGeolocation = () => {
   const [location, setLocation] = useState({
-    latitude: 28.0339,
-    longitude: 1.6596,
+    latitude: 0,
+    longitude: 0,
     error: null,
   });
 
