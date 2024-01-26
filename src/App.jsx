@@ -76,6 +76,8 @@ const router = createBrowserRouter([
     path: "/admin-dashboard",
     element: <AdminDashboard />, // abdou
   },
+
+  
 ]);
 
 const container = document.getElementById("root");
