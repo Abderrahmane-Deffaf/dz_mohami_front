@@ -9,7 +9,6 @@ const AvocatList = () => {
         { name: 'Abdou daffaf', url: 'test' },
         { name: 'Abdou daffaf', url: 'test' },
         { name: 'Abdou daffaf', url: 'test' },
-     
         // ... add more avocats as needed
     ];
 
