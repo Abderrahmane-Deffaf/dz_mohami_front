@@ -11,6 +11,7 @@ import CostumTextarea from "./reusable/CostumTextarea";
 import DaysOfWork from "./reusable/DaysOfWork";
 import HoursOfWork from "./reusable/HoursOfWork";
 import Location from "./reusable/Location";
+import { useEffect } from "react";
 
 const RegisterAvocatForm = () => {
   const form = useForm({
@@ -23,22 +24,29 @@ const RegisterAvocatForm = () => {
       phone: "",
       facebook: "",
       description: "",
-      long: 0, 
-      lat: 0, 
-      wilaya: "", 
-      address: "", 
+      long: 0,
+      lat: 0,
+      wilaya: "alger",
+      address: "",
     },
   });
 
   const onSubmit = (values) => {
+    if (!values.avatar) {
+      form.setError("root", { message: "upload image" });
+      return;
+    }
     console.log(values);
+    const formData = new FormData();
+    formData.append("image", values.avatar, values.avatar?.name);
   };
-  
+
   return (
     <Form {...form}>
       <form
         className="flex items-center py-6 flex-col gap-9"
         onSubmit={form.handleSubmit(onSubmit)}
+        onChange={() => console.log(form.address, form.wilaya)}
       >
         <div className="flex justify-between">
           <div className=" flex flex-col px-8 gap-8 after:block  after:content-[''] after:absolute after:-right-3 after:h-full after:w-[1px] after:bg-gray relative basis-[49%]">
@@ -116,6 +124,7 @@ const RegisterAvocatForm = () => {
             <FormField
               control={form.control}
               name="facebook"
+              rules={{ required: "Facebook is required" }}
               render={({ field }) => (
                 <InputField
                   type="text"
@@ -130,6 +139,12 @@ const RegisterAvocatForm = () => {
 
           <div className=" flex flex-col px-8 gap-8 basis-[49%]">
             <Location form={form} />
+            <p className=" space-x-3">
+              <span>full address:</span>
+              <span>{form.getValues("address")}</span>
+              <span>{form.getValues("wilaya")}</span>
+            </p>
+
             <FormField
               control={form.control}
               name="description"

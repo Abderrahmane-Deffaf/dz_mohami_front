@@ -41,14 +41,40 @@ const Location = ({ form }) => {
   // further setting
   useEffect(() => {
     console.log(long, lat);
+    console.log("changed");
     form.setValue("long", long);
     form.setValue("lat", lat);
+    console.log(form.getValues("long"), form.getValues("lat"));
+
     fromLatLng(lat, long)
       .then(({ results }) => {
         console.log(results);
 
-        const { lat, lng } = results[0].geometry.location;
-        console.log(lat, lng);
+        const address = results[0]?.formatted_address;
+        console.log(address);
+
+        if (address)
+          form.setValue("address", address, { shouldValidate: true });
+
+        const addressComp = results[0]?.address_components;
+
+        if (addressComp) {
+          const wilayaObj = addressComp?.find((comp) =>
+            comp.types.includes("administrative_area_level_1")
+          );
+          if (wilayaObj) {
+            const { short_name } = wilayaObj;
+            if (short_name) {
+              const wilaya = short_name
+                .replace("Wilaya", "")
+                .replace("de", "")
+                .trim()
+                .toLowerCase();
+              console.log(wilaya);
+              form.setValue("wilaya", wilaya, { shouldValidate: true });
+            }
+          }
+        }
       })
       .catch(console.error);
   }, [lat, long]);
