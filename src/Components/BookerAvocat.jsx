@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Form, FormField } from "../Components/ui/form";
-import { Button } from "../Components/ui/button";
 import { Phone } from "lucide-react";
 // eslint-disable-next-line import/no-unresolved
 
@@ -24,17 +23,19 @@ const BookerAvocat = () => {
     return (
         <Form {...form}>
             <form
-                className="flex items-center py-6 flex-col gap-9"
+                className=""
                 onSubmit={form.handleSubmit(onSubmit)}
             >
-                <div className="">
+                <div className="p-5">
                     <div>
 
                         <FormField
                             control={form.control}
+                          
                             name="phone"
                             render={({ field }) => (
                                 <InputField
+                                 
                                     type="tel"
                                     placeholder="Numéro de téléphone"
                                     field={field}
@@ -52,9 +53,7 @@ const BookerAvocat = () => {
                         <DatePickerDemo />
                     </div>
                 </div>
-                <Button className="px-[7rem] " type="submit">
-                    Booker un avocat
-                </Button>
+             
             </form>
         </Form>
     );
