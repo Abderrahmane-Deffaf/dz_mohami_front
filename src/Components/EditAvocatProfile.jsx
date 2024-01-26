@@ -4,7 +4,6 @@ import { Button } from "./ui/button";
 // eslint-disable-next-line import/no-unresolved
 import { User, Mail, Phone, Facebook } from "lucide-react";
 
-
 import InputField from "./reusable/InputField";
 import ImageInput from "./reusable/ImageInput";
 import CategoriesCheckbox from "./reusable/CategoriesCheckbox";
@@ -18,14 +17,15 @@ const EditAvocatProfile = () => {
     defaultValues: {
       nom: "hamid",
       prenom: "hello",
-      avatar: null,
-      email: "hello@gamil.com",
-      phone: "0663272880",
-      facebook: "url",
+      image: null,
+      email: "e@gmail.com",
+      phoneNumber: "055534343",
+      facebookUrl: "facebook.com",
       description: "hello",
-      long: 0, 
-      lat: 0, 
-
+      longitude: 0,
+      latitude: 0,
+      wilaya: "alger",
+      address: "algies hello",
     },
   });
 
@@ -113,10 +113,17 @@ const EditAvocatProfile = () => {
               )}
             />
             <CategoriesCheckbox form={form} />
+            <p>your categories</p>
+            {"hello, ehl"}
           </div>
 
           <div className=" flex flex-col px-8 gap-8 basis-[49%]">
             <Location form={form} />
+            <p className=" space-x-3">
+              <span>Full address:</span>
+              <span>{form.getValues("address")}</span>
+              <span>{form.getValues("wilaya")}</span>
+            </p>
             <FormField
               control={form.control}
               name="description"
@@ -125,7 +132,11 @@ const EditAvocatProfile = () => {
               )}
             />
             <DaysOfWork form={form} />
+            <p>Your days of work</p>
+            {"dimanche, lundi.."}
             <HoursOfWork form={form} />
+            <p>Your Hours of work</p>
+            {"12-12, ..."}
           </div>
         </div>
 
@@ -135,6 +146,6 @@ const EditAvocatProfile = () => {
       </form>
     </Form>
   );
-}
+};
 
-export default EditAvocatProfile
+export default EditAvocatProfile;

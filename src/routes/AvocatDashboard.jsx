@@ -1,8 +1,5 @@
-/* eslint-disable import/no-unresolved */
 import { useQuery } from "@tanstack/react-query";
-// eslint-disable-next-line import/no-unresolved
 import { getAvocatBookings } from "@/Fetches/avocatDashboard";
-// eslint-disable-next-line import/no-unresolved
 import Loader from "@/components/reusable/Loader";
 import { MoreVertical } from "lucide-react";
 import {
@@ -10,23 +7,21 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  // eslint-disable-next-line import/no-unresolved
 } from "@/components/ui/dropdown-menu";
-// eslint-disable-next-line import/no-unresolved
 import { Button } from "@/components/ui/button";
 import moment from "moment";
-import "moment/locale/fr";
+import { useContext } from "react";
+import { authContext } from "./AuthContext";
 
 const AvocatDashboard = () => {
+  const { user } = useContext(authContext);
+
   const { data, isLoading } = useQuery({
     queryKey: ["listOfMeetings"],
     queryFn: async () => {
       return getAvocatBookings();
     },
   });
-  console.log(isLoading);
-  
-  moment.locale("fr");
 
   return (
     <div className="basis-[80%] space-y-[5rem] p-8 ">
@@ -34,60 +29,63 @@ const AvocatDashboard = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="flex flex-col gap-4">
-          {data?.map((Element, index) => (
-            <div
-              className="flex items-center justify-between bg-white px-3 py-2 shadow rounded-lg"
-              key={index}
-            >
-              <div className="flex flex-col gap-2">
-                <div className="flex gap-2">
-                  <span className="font-semibold ">
-                    {Element.userName} {Element.userPrenom}
-                  </span>
-                  <span>{Element.date}</span>
-                </div>
-                <div>
-                  <p className="font-semibold">Description</p>
-                  <p>{Element.description}</p>
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex flex-col ">
-                    <span className=" font-semibold">Téléphone</span>
-                    <a href={`tel:${Element.phoneNumber}`}>
-                      {Element.phoneNumber}
-                    </a>
+        data && (
+          <div className="flex flex-col gap-4">
+            {data?.map((Element, index) => (
+              <div
+                className="flex items-center justify-between bg-white px-3 py-2 shadow rounded-lg"
+                key={index}
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-2">
+                    <span className="font-semibold ">
+                      {Element.userName} {Element.userPrenom}
+                    </span>
+                    <span>{Element.date}</span>
                   </div>
-                  <div className="flex flex-col ">
-                    <span className=" font-semibold">Date</span>
-                    <div className="flex gap-2">
-                      <span>{moment(Element.date).format("dddd")}</span>
-                      <span>
-                        {Element.end} {Element.start}
-                      </span>
+                  <div>
+                    <p className="font-semibold">Description</p>
+                    <p>{Element.description}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="flex flex-col ">
+                      <span className=" font-semibold">Téléphone</span>
+                      <a href={`tel:${Element.phoneNumber}`}>
+                        {Element.phoneNumber}
+                      </a>
+                    </div>
+                    <div className="flex flex-col ">
+                      <span className=" font-semibold">Date</span>
+                      <div className="flex gap-2">
+                        <span>{moment(Element.date).format("dddd")}</span>
+                        <span>
+                          {Element.end} {Element.start}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <MoreVertical />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem>
+                        <Button variant="action">C est fait</Button>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Button variant="action">Pas fait</Button>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
-              <div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger>
-                    <MoreVertical />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuItem>
-                      <Button variant="action">C est fait</Button>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Button variant="action">Pas fait</Button>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )
       )}
+      {!data && <p className=" text-red">There is an error</p>}
     </div>
   );
 };
