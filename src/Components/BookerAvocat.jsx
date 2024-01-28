@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Form, FormField } from "../Components/ui/form";
-import { Button } from "../Components/ui/button";
 import { Phone } from "lucide-react";
 // eslint-disable-next-line import/no-unresolved
 
 import InputField from "../Components/reusable/InputField";
 import CostumTextarea from "../Components/reusable/CostumTextarea";
 import DatePickerDemo from "../Components/PickDate";
+import HoursOfWork from "./reusable/HoursOfWork";
 
 
 const BookerAvocat = () => {
@@ -24,17 +24,19 @@ const BookerAvocat = () => {
     return (
         <Form {...form}>
             <form
-                className="flex items-center py-6 flex-col gap-9"
+                className=""
                 onSubmit={form.handleSubmit(onSubmit)}
             >
-                <div className="">
+                <div className="p-5">
                     <div>
 
                         <FormField
+                            className="mb-1.5"
                             control={form.control}
                             name="phone"
                             render={({ field }) => (
                                 <InputField
+                                className="mb-1.5"
                                     type="tel"
                                     placeholder="Numéro de téléphone"
                                     field={field}
@@ -45,16 +47,16 @@ const BookerAvocat = () => {
                         <FormField
                             control={form.control}
                             name="description"
+                            className="mb-1.5"
                             render={({ field }) => (
                                 <CostumTextarea placeholder="Descriptions" field={field} />
                             )}
                         />
-                        <DatePickerDemo />
+                        <DatePickerDemo/>
+                        <HoursOfWork form={form} />
                     </div>
                 </div>
-                <Button className="px-[7rem] " type="submit">
-                    Booker un avocat
-                </Button>
+             
             </form>
         </Form>
     );

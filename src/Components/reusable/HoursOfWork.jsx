@@ -24,7 +24,7 @@ const HoursOfWork = ({ form }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h3>Heures de travail:</h3>
+      <h3 className="mt-5">Heures de travail:</h3>
       <div className="flex flex-wrap gap-2">
         {HoursOfWorkList.map((Element, index) => (
           <FormField

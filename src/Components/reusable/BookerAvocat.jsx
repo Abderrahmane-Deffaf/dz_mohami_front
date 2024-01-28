@@ -1,6 +1,7 @@
 
 import { Button } from '../ui/button'
-import GoogleButton from '../reusable/GoogleButton'
+import BookerAvocat from '../BookerAvocat'
+
 import {
     Dialog,
     DialogClose,
@@ -8,25 +9,27 @@ import {
     DialogDescription,
     DialogFooter,
     DialogHeader,
-    
+
     DialogTrigger,
 } from "../ui/dialog"
 
-export function DialogCloseButton() {
+export function DialogBookerAvocat() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline" className="border-2 p-2">Add comment</Button>
+                <Button variant="outline" className="border-2 p-2">Réservez une heure</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogDescription>
-                        Voulez-vous continue ?               
-                             </DialogDescription>
+                        <BookerAvocat />
+                    </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="sm:justify-start">
                     <DialogClose asChild>
-                        <GoogleButton />
+                        <Button className="px-[7rem] w-full" type="submit">
+                            Booker un avocat
+                        </Button>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>
@@ -34,4 +37,4 @@ export function DialogCloseButton() {
     )
 
 }
-export default DialogCloseButton;
+export default DialogBookerAvocat;

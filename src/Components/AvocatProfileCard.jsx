@@ -1,8 +1,9 @@
 import { MapPin, Phone } from "lucide-react";
 import Stars from "../Components/reusable/Stars";
 import CostumLink from "../Components/reusable/CostumLink";
-import CastumButton from "./reusable/CastumButton";
+import DialogBookerAvocat from '../Components/reusable/BookerAvocat'
 import map from "../assets/map.png";
+
 
 
 const AvocatProfileCard = ({ name, image, location, categories, numberOfStarts, desc }) => {
@@ -26,7 +27,7 @@ const AvocatProfileCard = ({ name, image, location, categories, numberOfStarts, 
                     </div>
                     <div className="buttons flex space-x-3 mt-5">
                         <CostumLink dist={"/"} text={" (630) 984-7629"} icon={<Phone />} />
-                        <CastumButton nom="Réservez une heure" textColor="black" borderColor="black" />
+                        <DialogBookerAvocat />
                     </div>
                 </div>
                 <div className="img">
@@ -37,6 +38,7 @@ const AvocatProfileCard = ({ name, image, location, categories, numberOfStarts, 
             <div className="description border border-black p-4 rounded mt-5">
                 <h2 className="font-bold text-lg mb-3 "><u>Description:</u></h2>
                 <p className="text-gray-700 text-xs mb-12">{desc}.</p>
+          
             </div>
         </div>
 
