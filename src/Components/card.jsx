@@ -3,6 +3,7 @@ import Stars from "../Components/reusable/Stars";
 
 
 const card = ({ name, image,location, categories, numberOfStarts }) => {
+    
     return (
 
         <div className="card cursor-pointer select-none">

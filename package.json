@@ -57,6 +57,7 @@
     "react-day-picker": "^8.10.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.21.1",
     "react-simple-star-rating": "^5.1.7",
     "sort-by": "^0.0.2",

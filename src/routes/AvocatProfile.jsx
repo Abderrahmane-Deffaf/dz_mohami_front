@@ -7,10 +7,6 @@ import { Link } from "react-router-dom";
 import AddComment from '../Components/AddComment'
 import DialogCloseButton from '../Components/reusable/Dialog'
 
-
-
-
-
 // import { FormControl, FormField, FormItem, FormLabel } from "../Components/ui/form";
 // import { Checkbox } from "../Components/ui/checkbox";
 
@@ -27,6 +23,7 @@ const AvocatProfile = () => {
           <DialogCloseButton />
           {/* if user connected */}
           <AddComment />
+         
         </div>
         <Comment numberOfStarts="4" name="Ranim Benkerri" publicationDate="19 Janvier 2023" comment="Coby Boswell is an awesome lawyer! Very professional and dedicated to protecting the rights and best interests of a child. I felt much better with Coby as my lawyer. I was never stressed about the case because Coby was verywell prepared." />
         <Comment numberOfStarts="4" name="Ranim Benkerri" publicationDate="19 Janvier 2023" comment="Coby Boswell is an awesome lawyer! Very professional and dedicated to protecting the rights and best interests of a child. I felt much better with Coby as my lawyer. I was never stressed about the case because Coby was verywell prepared." />
@@ -48,3 +45,7 @@ const AvocatProfile = () => {
 }
 
 export default AvocatProfile
+
+
+
+
