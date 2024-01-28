@@ -21,7 +21,7 @@ export function DialogCloseButton() {
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogDescription>
-                        Vous-voulez continue ?               
+                        Voulez-vous continue ?               
                              </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="sm:justify-start">
