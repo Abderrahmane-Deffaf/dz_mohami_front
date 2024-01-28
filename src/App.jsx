@@ -15,7 +15,6 @@ import Root from "./routes/Root";
 import AvocatDashboardRoot from "./routes/AvocatDashboardRoot";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import NotFound from "./components/reusable/NotFound";
 import "./i18n";
 import AuthContext from "./routes/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -28,7 +27,6 @@ const router = createBrowserRouter([
     children: [
       {
         element: <Root />,
-        errorElement: <NotFound />,
         children: [
           {
             path: "/",
