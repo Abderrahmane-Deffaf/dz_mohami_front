@@ -1,35 +1,16 @@
-const UserInformations = () => {
-    // const { user } = useContext(UserContext);
-
+const UserInformations = ({ nom, prenom, email }) => {
+  // const { user } = useContext(UserContext);
 
   return (
-    <div className="border border-black p-4 rounded mt-5">
-      <label>
+    <div className="border flex flex-col gap-4 border-black p-4 rounded mt-5">
+      <div className="flex gap-4">
         Name:
-        <input
-        className="border border-black rounded-lg p-2 w-1/2 ml-4"    
-          type="text"
-          name="name"
-          value="Ranim benkerri"
-        
-        />
-      </label>
-      <br />
-      <br />
-      <label>
-        Email: 
-        <input
-        className="border border-black rounded-lg p-2 w-1/2 ml-4"    
-          type="email"
-          name="email"
-          value="ranim@gmail.com"
-       
-        />
-      </label>
-
-      <br />
-
-    
+        <p className="border border-black rounded-lg p-2 w-1/2 ml-4">{`${nom} ${prenom}`}</p>
+      </div>
+      <div className="flex gap-4">
+        Email:
+        <p className="border border-black rounded-lg p-2 w-1/2 ml-4">{email}</p>
+      </div>
     </div>
   );
 };

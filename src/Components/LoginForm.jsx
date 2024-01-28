@@ -31,6 +31,17 @@ const LoginForm = () => {
       if (data) {
         if (data?.token) {
           setUser(data.token);
+          const currentDate = new Date();
+
+          // Calculate the expiration date (current date + 8 hours)
+          const expirationDate = new Date(
+            currentDate.getTime() + 8 * 60 * 60 * 1000
+          );
+
+          // Convert the expiration date to the UTC format required by cookies
+          const expiresUTC = expirationDate.toUTCString();
+          document.cookie = `token=${data?.token}; expires=${expiresUTC}; path=/`;
+          console.log("Cookie set:", document.cookie);
           try {
             const infos = await getUser(data.token, "/auth/me");
             console.log(infos);

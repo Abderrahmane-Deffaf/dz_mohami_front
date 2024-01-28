@@ -4,8 +4,14 @@ import { Button } from "./ui/button";
 import { KeyRound } from "lucide-react";
 
 import InputField from "./reusable/InputField";
+import { useContext } from "react";
+import { authContext } from "@/routes/AuthContext";
+import axios from "axios";
+import { base_url } from "@/lib/constants";
+import { useToast } from "./ui/use-toast";
 
 const EditAvocatPassword = () => {
+  const { user } = useContext(authContext);
   const form = useForm({
     defaultValues: {
       oldPassword: "",
@@ -13,8 +19,31 @@ const EditAvocatPassword = () => {
     },
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const { toast } = useToast();
+
+  const onSubmit = async (values) => {
+    try {
+      const res = await axios.post(
+        `${base_url}/profile/change-password`,
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      console.log(res.data);
+      if (res.data?.message) {
+        toast({
+          description: res.data.message,
+        });
+      }
+    } catch (e) {
+      toast({
+        description: e?.message || "error",
+        variant: "destructive",
+      });
+    }
   };
   return (
     <Form {...form}>

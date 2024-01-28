@@ -20,3 +20,19 @@ export const getAvocatBookings = async (cookie) => {
     return null;
   }
 };
+
+export const getAvocatProfile = async (cookie) => {
+  try {
+    const data = await axios.get(`${base_url}/profile`, {
+      headers: {
+        Authorization: `Bearer ${cookie}`,
+      },
+    });
+    console.log(data.data);
+    return data.data;
+  } catch (e) {
+    console.log(e);
+
+    return null;
+  }
+};

@@ -26,7 +26,11 @@ const AvocatDashboardRoot = () => {
         <Loader />
       ) : (
         <>
-          <SideBar nom={data?.nom || null} imageUrl={data?.imageUrl} />
+          <SideBar
+            prenom={data?.prenom || null}
+            nom={data?.nom || null}
+            imageUrl={data?.imageUrl}
+          />
           <Outlet />
         </>
       )}

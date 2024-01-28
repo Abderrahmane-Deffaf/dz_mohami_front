@@ -16,12 +16,15 @@ import { authContext } from "./AuthContext";
 const AvocatDashboard = () => {
   const { user } = useContext(authContext);
 
+  console.log(user);
+
   const { data, isLoading } = useQuery({
     queryKey: ["listOfMeetings"],
     queryFn: async () => {
-      return getAvocatBookings();
+      return getAvocatBookings(user);
     },
   });
+  console.log(data);
 
   return (
     <div className="basis-[80%] space-y-[5rem] p-8 ">

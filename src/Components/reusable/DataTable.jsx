@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-// eslint-disable-next-line import/no-unresolved
+  // eslint-disable-next-line import/no-unresolved
 } from "@/components/ui/table";
 // eslint-disable-next-line import/no-unresolved
 import { Button } from "@/components/ui/button";
@@ -47,7 +47,7 @@ export function DataTable({
       pageIndex,
       pageSize,
     }),
-    [pageIndex, pageSize],
+    [pageIndex, pageSize]
   );
 
   const table = useReactTable({
@@ -71,7 +71,6 @@ export function DataTable({
     },
   });
 
-  
   return (
     <div>
       <div className="rounded-md bg-white shadow">

@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import google from "@/assets/icons/google.svg";
 import { Button } from "../ui/button";
+import axios from "axios";
+import { base_url } from "@/lib/constants";
+import { authContext } from "@/routes/AuthContext";
+import { getUser } from "@/Fetches/global";
 
 const GoogleButton = () => {
   /* async function handleClick() {
@@ -13,17 +17,42 @@ const GoogleButton = () => {
     }
   } */
   const location = useLocation();
+  const navigate = useNavigate();
+  const { setUser, setType } = useContext(authContext);
 
   useEffect(() => {
+    async function getInfos(token) {
+      try {
+        const infos = await getUser(token, "/auth/me");
+        console.log(infos);
+        if (infos?.role == "admin") {
+          navigate("/admin-dashboard");
+        } else if (infos?.role == "user") {
+          setType("user");
+          navigate("/user-dashboard");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
     let token = location?.search;
     if (token) {
       token = token.replace("?token=", "");
-
       if (token) {
         console.log(token);
+        setUser(token);
+        const currentDate = new Date();
 
-        // getting the info and redirecting the user
-        // then store the user token
+        // Calculate the expiration date (current date + 8 hours)
+        const expirationDate = new Date(
+          currentDate.getTime() + 8 * 60 * 60 * 1000
+        );
+
+        // Convert the expiration date to the UTC format required by cookies
+        const expiresUTC = expirationDate.toUTCString();
+        document.cookie = `token=${token}; expires=${expiresUTC}; path=/`;
+        console.log("Cookie set:", document.cookie);
+        getInfos(token);
       }
     }
   }, [location]);

@@ -2,6 +2,7 @@ import { base_url } from "@/lib/constants";
 import axios from "axios";
 
 export const getUser = async (cookie, url) => {
+  if (!cookie) return null;
   try {
     const data = await axios.get(`${base_url}${url}`, {
       headers: {
