@@ -6,6 +6,7 @@ import { Phone } from "lucide-react";
 import InputField from "../Components/reusable/InputField";
 import CostumTextarea from "../Components/reusable/CostumTextarea";
 import DatePickerDemo from "../Components/PickDate";
+import HoursOfWork from "./reusable/HoursOfWork";
 
 
 const BookerAvocat = () => {
@@ -30,12 +31,12 @@ const BookerAvocat = () => {
                     <div>
 
                         <FormField
+                            className="mb-1.5"
                             control={form.control}
-                          
                             name="phone"
                             render={({ field }) => (
                                 <InputField
-                                 
+                                className="mb-1.5"
                                     type="tel"
                                     placeholder="Numéro de téléphone"
                                     field={field}
@@ -46,11 +47,13 @@ const BookerAvocat = () => {
                         <FormField
                             control={form.control}
                             name="description"
+                            className="mb-1.5"
                             render={({ field }) => (
                                 <CostumTextarea placeholder="Descriptions" field={field} />
                             )}
                         />
-                        <DatePickerDemo />
+                        <DatePickerDemo/>
+                        <HoursOfWork form={form} />
                     </div>
                 </div>
              

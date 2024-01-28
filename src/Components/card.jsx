@@ -28,10 +28,7 @@ const card = ({ name, image, location, categories, numberOfStarts }) => {
                 <p className="text-gray-700 text-xs mb-5">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, ex? Sit odit nemo voluptas dolore dolor, ratione labore? Sequinisi quos magni magnam iste Lorem ipsum dolor sit amet consectetur bradipisicing elit. Quasi, ex? Sit odit nemo voluptas dolore dolore.
                 </p>
-
                 <CostumLink dist={"/avocat-profile/:avocatId"} text={"Visiter le profile"} className="align-center" />
-
-
             </div>
 
         </div>
