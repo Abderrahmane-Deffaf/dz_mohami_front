@@ -23,6 +23,9 @@ const EditAvocatProfile = () => {
       phone: "0663272880",
       facebook: "url",
       description: "hello",
+      long: 0, 
+      lat: 0, 
+
     },
   });
 
@@ -113,7 +116,7 @@ const EditAvocatProfile = () => {
           </div>
 
           <div className=" flex flex-col px-8 gap-8 basis-[49%]">
-            <Location />
+            <Location form={form} />
             <FormField
               control={form.control}
               name="description"
