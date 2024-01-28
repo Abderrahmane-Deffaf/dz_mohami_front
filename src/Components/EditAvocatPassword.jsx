@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Form, FormField } from "./ui/form";
 import { Button } from "./ui/button";
-// eslint-disable-next-line import/no-unresolved
-import {  KeyRound } from "lucide-react";
+import { KeyRound } from "lucide-react";
 
 import InputField from "./reusable/InputField";
 
@@ -27,6 +26,7 @@ const EditAvocatPassword = () => {
           <FormField
             control={form.control}
             name="oldPassword"
+            rules={{ required: "Password is required" }}
             render={({ field }) => (
               <InputField
                 placeholder="Ancien mot de passe"
@@ -39,6 +39,7 @@ const EditAvocatPassword = () => {
           <FormField
             control={form.control}
             name="newPassword"
+            rules={{ required: "Password is required" }}
             render={({ field }) => (
               <InputField
                 placeholder="Nouveau mot de passe"

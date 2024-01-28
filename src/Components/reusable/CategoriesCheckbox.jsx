@@ -20,16 +20,16 @@ const CategoriesCheckbox = ({ form }) => {
             <FormField
               key={index}
               control={form.control}
-              name={Element.value}
+              name={Element}
               render={({ field }) => (
                 <FormItem className="flex gap-x-2 items-center">
                   <FormControl>
                     <Checkbox
-                      checked={field.id}
+                      checked={field.value}
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
-                  <FormLabel>{Element.value}</FormLabel>
+                  <FormLabel>{Element}</FormLabel>
                 </FormItem>
               )}
             />

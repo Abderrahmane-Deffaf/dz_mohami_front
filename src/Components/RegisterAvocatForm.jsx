@@ -1,51 +1,149 @@
 import { useForm } from "react-hook-form";
 import { Form, FormField } from "./ui/form";
 import { Button } from "./ui/button";
-// eslint-disable-next-line import/no-unresolved
 import { User, Mail, KeyRound, Phone, Facebook } from "lucide-react";
 
 import InputField from "./reusable/InputField";
 import ImageInput from "./reusable/ImageInput";
 import CategoriesCheckbox from "./reusable/CategoriesCheckbox";
 import CostumTextarea from "./reusable/CostumTextarea";
-import DaysOfWork from "./reusable/DaysOfWork";
+import DaysOfWork, { DaysOfWorkList } from "./reusable/DaysOfWork";
 import HoursOfWork from "./reusable/HoursOfWork";
 import Location from "./reusable/Location";
-import { useEffect } from "react";
+import { base_url, categories } from "@/lib/constants";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { authContext } from "@/routes/AuthContext";
 
 const RegisterAvocatForm = () => {
+  const times = ["1", "2", "3", "4"];
+  const navigate = useNavigate();
+  const { setUser } = useContext(authContext);
+
   const form = useForm({
     defaultValues: {
       nom: "",
       prenom: "",
-      avatar: null,
+      image: null,
       email: "",
       password: "",
-      phone: "",
-      facebook: "",
+      phoneNumber: "",
+      facebookUrl: "",
       description: "",
-      long: 0,
-      lat: 0,
+      longitude: 0,
+      latitude: 0,
       wilaya: "alger",
       address: "",
     },
   });
 
-  const onSubmit = (values) => {
-    if (!values.avatar) {
-      form.setError("root", { message: "upload image" });
+  const onSubmit = async (values) => {
+    // removing null values ;
+    const newValues = Object.entries(values).filter(
+      (element) => element[1] && element
+    );
+    // getting the categories
+    const cates = newValues.filter(
+      (element) => categories.includes(element[0]) && element
+    );
+
+    // getting the days of work
+    const days = newValues.filter(
+      (element) => DaysOfWorkList.includes(element[0]) && element
+    );
+    // getting the times
+    const hours = newValues.filter(
+      (element) => times.includes(element[0]) && element
+    );
+
+    // substracting the arrays form the original
+    const valuesNocategoires = newValues.filter(
+      (element) => !cates.includes(element)
+    );
+    const valuesNoDays = valuesNocategoires.filter(
+      (element) => !days.includes(element)
+    );
+    const valuesNoHours = valuesNoDays.filter(
+      (element) => !hours.includes(element)
+    );
+    if (!cates.length || !days.length || !hours.length) {
+      form.setError("root", {
+        message: "categories and days and hours should not be emty",
+      });
       return;
     }
-    console.log(values);
+    let categoriesValue = "";
+    let daysValue = "";
+    let hoursValue = "";
+    cates.forEach((element, index) => {
+      if (index + 1 == cates.length) {
+        categoriesValue = categoriesValue + element[0];
+      } else {
+        categoriesValue = categoriesValue + element[0] + ",";
+      }
+    });
+    days.forEach((element, index) => {
+      if (index + 1 == days.length) {
+        daysValue = daysValue + element[0];
+      } else {
+        daysValue = daysValue + element[0] + ",";
+      }
+    });
+    hours.forEach((element, index) => {
+      if (index + 1 == hours.length) {
+        hoursValue = hoursValue + element[0];
+      } else {
+        hoursValue = hoursValue + element[0] + ",";
+      }
+    });
+
     const formData = new FormData();
-    formData.append("image", values.avatar, values.avatar?.name);
+    formData.append("categories", categoriesValue);
+    formData.append("workDays", daysValue);
+    formData.append("availabilityIds", hoursValue);
+    valuesNoHours.map((element) => {
+      if (element[0] == "image") {
+        formData.append("image", values.image, values.image?.name);
+      } else {
+        formData.append(element[0], element[1]);
+      }
+    });
+
+    try {
+      const res = await axios.post(
+        `${base_url}/auth/register-avocat`,
+        formData
+      );
+      //console.log(res);
+      if (res?.data?.token) {
+        console.log("here");
+        const currentDate = new Date();
+
+        // Calculate the expiration date (current date + 8 hours)
+        const expirationDate = new Date(
+          currentDate.getTime() + 8 * 60 * 60 * 1000
+        );
+
+        // Convert the expiration date to the UTC format required by cookies
+        const expiresUTC = expirationDate.toUTCString();
+        document.cookie = `token=${res?.data?.token}; expires=${expiresUTC}; path=/`;
+        setUser(res?.data?.token);
+        navigate("/avocat-dashboard/home");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
+  function onError(e) {
+    console.log(e);
+  }
   return (
     <Form {...form}>
       <form
         className="flex items-center py-6 flex-col gap-9"
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit, onError)}
         onChange={() => console.log(form.address, form.wilaya)}
       >
         <div className="flex justify-between">
@@ -55,6 +153,7 @@ const RegisterAvocatForm = () => {
                 <FormField
                   control={form.control}
                   name="nom"
+                  rules={{ required: "Nom is required" }}
                   render={({ field }) => (
                     <InputField
                       placeholder="Nom"
@@ -67,6 +166,7 @@ const RegisterAvocatForm = () => {
                 <FormField
                   control={form.control}
                   name="prenom"
+                  rules={{ required: "Prénom is required" }}
                   render={({ field }) => (
                     <InputField
                       placeholder="Prénom"
@@ -77,17 +177,24 @@ const RegisterAvocatForm = () => {
                   )}
                 />
               </div>
-              <div className="basis-[30%] flex justify-end">
+              <div className="basis-[30%] flex-col flex justify-end">
                 <FormField
                   control={form.control}
-                  name="avatar"
+                  name="image"
+                  rules={{ required: "Image is required" }}
                   render={({ field }) => <ImageInput field={field} />}
                 />
+                {form.formState.errors.avatar?.message && (
+                  <p className=" text-red">
+                    {form.formState.errors.avatar.message}
+                  </p>
+                )}
               </div>
             </div>
             <FormField
               control={form.control}
               name="email"
+              rules={{ required: "Email is required" }}
               render={({ field }) => (
                 <InputField
                   type="mail"
@@ -100,6 +207,7 @@ const RegisterAvocatForm = () => {
             <FormField
               control={form.control}
               name="password"
+              rules={{ required: "Password is required" }}
               render={({ field }) => (
                 <InputField
                   placeholder="Mod de passe"
@@ -111,7 +219,8 @@ const RegisterAvocatForm = () => {
             />
             <FormField
               control={form.control}
-              name="phone"
+              name="phoneNumber"
+              rules={{ required: "Phone is required" }}
               render={({ field }) => (
                 <InputField
                   type="tel"
@@ -123,7 +232,7 @@ const RegisterAvocatForm = () => {
             />
             <FormField
               control={form.control}
-              name="facebook"
+              name="facebookUrl"
               rules={{ required: "Facebook is required" }}
               render={({ field }) => (
                 <InputField
@@ -148,6 +257,7 @@ const RegisterAvocatForm = () => {
             <FormField
               control={form.control}
               name="description"
+              rules={{ required: "Description is required" }}
               render={({ field }) => (
                 <CostumTextarea placeholder="Descriptions" field={field} />
               )}

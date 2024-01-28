@@ -1,8 +1,22 @@
 // eslint-disable-next-line import/named
+import { base_url } from "@/lib/constants";
 import axios from "axios";
 
-export const getAvocatBookings = async () => {
-  const data = await axios.get("https://api.npoint.io/5b6284b923c5345ae1f6");
-  console.log(data.data);
-  return data.data;
+export const getAvocatBookings = async (cookie) => {
+  try {
+    const data = await axios.get(
+      `${base_url}/appointment/avocat-appointments`,
+      {
+        headers: {
+          Authorization: `Bearer ${cookie}`,
+        },
+      }
+    );
+    console.log(data.data);
+    return data.data;
+  } catch (e) {
+    console.log(e);
+
+    return null;
+  }
 };

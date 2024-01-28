@@ -42,8 +42,8 @@ const Location = ({ form }) => {
   useEffect(() => {
     console.log(long, lat);
     console.log("changed");
-    form.setValue("long", long);
-    form.setValue("lat", lat);
+    form.setValue("longitude", long);
+    form.setValue("latitude", lat);
     console.log(form.getValues("long"), form.getValues("lat"));
 
     fromLatLng(lat, long)
