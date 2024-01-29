@@ -63,23 +63,6 @@ const LoginForm = () => {
     console.log(values);
   };
 
-  useEffect(() => {
-    /* setTimeout(() => {
-      setGoogleUrl(
-        "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=973975745540-bjlvhrvn1qusqq785l1i3cklkab9gp4f.apps.googleusercontent.com&redirect_uri=http://localhost:8000/auth/redirect&scope=openid%20profile%20email&access_type=offline"
-      );
-    }, 200); */
-    /* try {
-      fetch(`${base_url}/auth/login/google`)
-        .then((data) => data.json())
-        .then((data) => {
-          console.log(data);
-        });
-    } catch (e) {
-      console.log(e);
-    } */
-  });
-
   return (
     <Form {...form}>
       <form

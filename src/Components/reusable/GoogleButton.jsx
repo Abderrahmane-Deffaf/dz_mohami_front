@@ -8,14 +8,6 @@ import { authContext } from "@/routes/AuthContext";
 import { getUser } from "@/Fetches/global";
 
 const GoogleButton = () => {
-  /* async function handleClick() {
-    try {
-      const res = await fetch(url);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  } */
   const location = useLocation();
   const navigate = useNavigate();
   const { setUser, setType } = useContext(authContext);

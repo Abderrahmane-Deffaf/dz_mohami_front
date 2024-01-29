@@ -42,7 +42,7 @@ import { useToast } from "./ui/use-toast";
 */
 export const amdinColumns = [
   {
-    accessorKey: "id",
+    accessorKey: "avocatId",
     header: "ID",
   },
   {
@@ -77,12 +77,11 @@ export const amdinColumns = [
     header: "Categories",
     cell: ({ row }) => {
       return (
-        <div className="flex flex-wrap gap-1">
-          {row.original.categories.map((Element, index) => (
-            <span className="p-1 rounded-lg border border-blue " key={index}>
-              {Element}
-            </span>
-          ))}
+        <div className="flex max-h-[10rem] overflow-y-hidden flex-wrap gap-1">
+          <span className="p-1 rounded-lg border border-blue ">
+            {row.original.categories[0]}
+          </span>
+          ...
         </div>
       );
     },
@@ -132,7 +131,7 @@ export const amdinColumns = [
                   ) {
                     // accepting action
                     try {
-                      const res = await acceptAvocat(row.original.id);
+                      const res = await acceptAvocat(row.original.avocatId);
                       console.log(res);
                       if (res?.detail) {
                         toast({
@@ -152,7 +151,7 @@ export const amdinColumns = [
                   ) {
                     //block action
                     try {
-                      const res = await blockAvocat(row.original.id);
+                      const res = await blockAvocat(row.original.avocatId);
                       console.log("bock", res);
 
                       if (res?.detail) {
@@ -170,7 +169,7 @@ export const amdinColumns = [
                   } else if (row.original.isBlocked) {
                     // debloquer action
                     try {
-                      const res = await deblockAvocat(row.original.id);
+                      const res = await deblockAvocat(row.original.avocatId);
                       console.log("bock", res);
 
                       if (res?.detail) {
@@ -207,7 +206,7 @@ export const amdinColumns = [
                   if (row.original.status == "pending") {
                     // refuser action
                     try {
-                      const res = await refuserAvocat(row.original.id);
+                      const res = await refuserAvocat(row.original.avocatId);
                       console.log(res);
                       if (res?.detail) {
                         toast({
@@ -224,7 +223,7 @@ export const amdinColumns = [
                   } else {
                     //supprimer action
                     try {
-                      const res = await deleteAvocat(row.original.id);
+                      const res = await deleteAvocat(row.original.avocatId);
                       console.log("bock", res);
 
                       if (res?.detail) {

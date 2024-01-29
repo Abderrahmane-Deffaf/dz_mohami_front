@@ -1,11 +1,11 @@
 {
   "home": {
-    "title": "Avocats expérimentés sont prêts à aider", 
-    "description": "Bienvenue chez Avvo, où lexpertise juridique rencontre le service exceptionnel.", 
-    "action": "Trouver un avocat", 
-    "signup": "Développez votre cabinet", 
-    "signin": "Se connecter", 
-    "mostrated": "Avocats de premier plan près de chez vous.", 
+    "title": "Avocats expérimentés sont prêts à aider",
+    "description": "Bienvenue chez DzMohami, où lexpertise juridique rencontre le service exceptionnel.",
+    "action": "Trouver un avocat",
+    "signup": "Développez votre cabinet",
+    "signin": "Se connecter",
+    "mostrated": "Avocats de premier plan près de chez vous.",
     "footer": "Des avocats expérimentés sont prêts à aider."
   }
 }
